@@ -3,8 +3,8 @@ package main
 import (
 	"os"
 
-	"github.com/aidan-/cloudtrailbeat/beater"
 	"github.com/elastic/beats/libbeat/beat"
+	"github.com/taxibeat/cloudtrailbeat/beater"
 )
 
 var Version = "0.0.3"
