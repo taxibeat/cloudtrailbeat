@@ -9,3 +9,19 @@ SYSTEM_TESTS=false
 GOX_OS=linux
 
 include $(ES_BEATS)/libbeat/scripts/Makefile
+
+.PHONY: dockerize-builder
+dockerize-builder: 
+	docker build . -f Dockerfile.builder -t go_alpine_builder
+	glide install
+	docker run --rm -v ~/go/:/go -w /go/src/github.com/taxibeat/cloudtrailbeat go_alpine_builder bash -c 'glide install && make'
+
+.PHONY: dockerize-runner
+dockerize-runner: cloudtrailbeat
+	docker build . -f Dockerfile.runner -t cloudtrailbeat
+
+cloudtrailbeat: dockerize-builder
+
+.PHONY: dockerize
+dockerize: dockerize-runner
+	docker images | grep cloudtrailbeat

@@ -1,0 +1,10 @@
+FROM alpine:3.9.5 AS runtime
+
+# Create non-root user (Security First!)
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+WORKDIR /home/appuser
+USER appuser
+
+COPY /cloudtrailbeat .
+
+CMD [ "./cloudtrailbeat", "-b" ]
