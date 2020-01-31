@@ -1,3 +1,9 @@
 *.swp
 cloudtrailbeat
 testconfig.yml
+.terraform/
+terraform.tfstate.backup
+.DS_Store
+*.swp
+lock.json
+.vscode/
