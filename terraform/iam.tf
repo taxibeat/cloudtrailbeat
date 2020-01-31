@@ -41,10 +41,6 @@ resource "aws_iam_policy" "cloudtrailbeat" {
 }
 POLICY
 
-  tags = {
-    ManagedBy = "Terraform",
-    Deployment = "cloudtrailbeat"
-  }
 }
 
 resource "aws_iam_role" "cloudtrailbeat" {
