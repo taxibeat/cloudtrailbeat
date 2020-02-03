@@ -10,3 +10,9 @@ resource "aws_sqs_queue" "cloudtrailbeat" {
     Deployment = "cloudtrailbeat"
   }
 }
+
+data "aws_caller_identity" "current" {}
+
+locals {
+  sqs_http_address = "https://sqs.us-east-1.amazonaws.com/${data.aws_caller_identity.current.account_id}/${aws_sqs_queue.cloudtrailbeat.name}"
+}
